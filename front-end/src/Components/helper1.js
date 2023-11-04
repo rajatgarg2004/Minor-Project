@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
+
 const Helper1 = () => {
     const [total, setTotal] = useState(0);
     const [inputval, setInputval] = useState([]);
     const [load, setLoad] = useState(0);
     const [mainans, setMainans] = useState([]);
     const [istrue, setIstrue] = useState(true);
-    const [answer,setAnswer] = useState(0);
+    const [answer, setAnswer] = useState(0);
     const solver = () => {
         const rows = total;
         const col = parseInt(load) + 1;
@@ -69,22 +70,22 @@ const Helper1 = () => {
                 i--;
             }
             else {
-                arrayans.push([i + 1, newGrid1[i][j][1],((1 / 2) * parseFloat(inputval[i][2]) * Math.pow(j, 2) + parseFloat(inputval[i][3]) * (j) + parseFloat(inputval[i][4])).toFixed(4)]);
+                arrayans.push([i + 1, newGrid1[i][j][1], ((1 / 2) * parseFloat(inputval[i][2]) * Math.pow(newGrid1[i][j][1], 2) + parseFloat(inputval[i][3]) * (newGrid1[i][j][1]) + parseFloat(inputval[i][4])).toFixed(4)]);
                 j = newGrid1[i][j][2];
                 i--;
             }
         }
         if (i === 0 && j !== 0) {
-            arrayans.push([i + 1, newGrid1[i][j][1],((1 / 2) * parseFloat(inputval[i][2]) * Math.pow(j, 2) + parseFloat(inputval[i][3]) * (j) + parseFloat(inputval[i][4])).toFixed(4)]);
+            arrayans.push([i + 1, newGrid1[i][j][1], ((1 / 2) * parseFloat(inputval[i][2]) * Math.pow(newGrid1[i][j][1], 2) + parseFloat(inputval[i][3]) * (newGrid1[i][j][1]) + parseFloat(inputval[i][4])).toFixed(4)]);
         }
         arrayans.sort((a, b) => a[0] - b[0]);
         setMainans(arrayans);
         setAnswer(ans1);
-    }
+    };
     useEffect(() => {
         console.log(mainans);
         setIstrue(false);
-    }, [mainans])
+    }, [mainans]);
 
     const handleChange = (event) => {
         const selectedValue = parseInt(event.target.value);
@@ -107,9 +108,9 @@ const Helper1 = () => {
             return newGrid;
         });
     };
-    useEffect(()=>{
+    useEffect(() => {
         setIstrue(true);
-    },[inputval,load]);
+    }, [inputval, load]);
     return (
         <div>
             <select onChange={handleChange}>
@@ -121,99 +122,98 @@ const Helper1 = () => {
                 <option value="5">5</option>
 
             </select>
-                        {
-                            total !== 0 ?
-                                <div style={{ 'marginTop': '50px' }}>
-                                    < Table border='1' width='1000' align='center'>
-                                        <thead>
-                                            <tr id="definition">
-                                                <td>Generator</td>
-                                                <td>Minimum Capacity</td>
-                                                <td>Maximum Capacity</td>
-                                                <td>a</td>
-                                                <td>b</td>
-                                                <td>d</td>
-                                            </tr>
+            {total !== 0 ?
+                <div style={{ 'marginTop': '50px' }}>
+                    <Table border='1' width='1000' align='center'>
+                        <thead>
+                            <tr id="definition">
+                                <td>Generator</td>
+                                <td>Minimum Capacity</td>
+                                <td>Maximum Capacity</td>
+                                <td>a</td>
+                                <td>b</td>
+                                <td>d</td>
+                            </tr>
 
-                                        </thead>
-                                        <tbody>
-                                            {inputval.map((row, rowIndex) => (
-                                                <tr key={rowIndex}>
-                                                    <td>
-                                                        {rowIndex + 1}
-                                                    </td>
-                                                    {row.map((cell, columnIndex) => (
-                                                        columnIndex < 2 ?
-                                                            <td key={columnIndex}>
-                                                                <input
-                                                                    type="number"
-                                                                    value={cell}
-                                                                    onChange={(e) => {
-                                                                        const newValue = parseInt(e.target.value, 10);
-                                                                        updateCellValue(rowIndex, columnIndex, newValue);
-                                                                    }}
-                                                                />
-                                                            </td> :
-                                                            <td key={columnIndex}>
-                                                                <input
-                                                                    type="number"
-                                                                    step="any"
-                                                                    defaultValue="0"
-                                                                    onChange={(e) => {
-                                                                        let newValue = parseFloat(e.target.value);
-                                                                        newValue = newValue.toFixed(6);
-                                                                        updateCellValue(rowIndex, columnIndex, newValue);
-                                                                    }}
-                                                                />
-                                                            </td>
-                                                    ))}
-                                                </tr>
+                        </thead>
+                        <tbody>
+                            {inputval.map((row, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    <td>
+                                        {rowIndex + 1}
+                                    </td>
+                                    {row.map((cell, columnIndex) => (
+                                        columnIndex < 2 ?
+                                            <td key={columnIndex}>
+                                                <input
+                                                    type="number"
+                                                    value={cell}
+                                                    onChange={(e) => {
+                                                        const newValue = parseInt(e.target.value, 10);
+                                                        updateCellValue(rowIndex, columnIndex, newValue);
+                                                    }} />
+                                            </td> :
+                                            <td key={columnIndex}>
+                                                <input
+                                                    type="number"
+                                                    step="any"
+                                                    defaultValue="0"
+                                                    onChange={(e) => {
+                                                        let newValue = parseFloat(e.target.value);
+                                                        newValue = newValue.toFixed(6);
+                                                        updateCellValue(rowIndex, columnIndex, newValue);
+                                                    }} />
+                                            </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <span style={{ 'display': 'inline-block' }}>
+                        <p style={{ 'marginRight': '50px' }}>Enter the Load required</p>
+                    </span>
+                    <input type="text" defaultValue={parseInt(0)} onChange={(e) => { setLoad(e.target.value); }} />
+                    <br />
+                    {istrue === true ?
+
+                        <button onClick={solver}>Solve for generators to use</button> :
+                        <>
+                            <Table border='1' width='1000' align='center'>
+                                <thead>
+                                    <tr id="definition">
+                                        <td>Generator</td>
+                                        <td>Output</td>
+                                        <td>Cost</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {mainans.map((row, index) => (
+                                        <tr key={index}>
+                                            {row.map((cell, columnIndex) => (
+                                                <td key={columnIndex}>
+                                                    {cell}
+                                                </td>
                                             ))}
-                                        </tbody>
-                                    </Table>
-                                    <span style={{ 'display': 'inline-block' }}>
-                                        <p style={{ 'marginRight': '50px' }}>Enter the Load required</p>
-                                    </span>
-                                    <input type="text" defaultValue={parseInt(0)} onChange={(e) => { setLoad(e.target.value) }} />
-                                    <br />
-                                    {
-                                        istrue === true ?
-                                        
-                                            <button onClick={solver}>Solve for generators to use</button> :
-                                            <>
-                                            < Table border='1' width='1000' align='center'>
-                                                <thead>
-                                                    <tr id="definition">
-                                                        <td>Generator</td>
-                                                        <td>Output</td>
-                                                        <td>Cost</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                {mainans.map((row, index) => (
-                                                    <tr key={index}>
-                                                        {row.map((cell, columnIndex) => (
-                                                            <td key={columnIndex}>
-                                                                {cell}
-                                                            </td>
-                                                        ))}
-                                                    </tr>
-                                                ))}
-                                                </tbody>
-                                            </Table>
-                                            <h1>Overall Cost = {answer}</h1>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                            {
+                                answer!==Number.MAX_SAFE_INTEGER?
+                                <h1>Overall Cost = {answer}</h1>:
+                                <h1>Overall Cost = 0</h1>
+                            }
 
-                                            </>
-                                    }
+                        </>}
 
-                                </div>
-                                : <div>
-                                    <h1>Please select some value</h1>
-                                </div>
-                        }
+                </div>
+                : <div>
+                    <h1>Please select some value</h1>
+                </div>}
         </div>
 
     );
 
-}
+};
+
 export default Helper1;
