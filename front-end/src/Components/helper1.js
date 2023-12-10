@@ -1,3 +1,6 @@
+import './tableDesign.css';
+import './btn&select.css';
+
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 
@@ -113,7 +116,7 @@ const Helper1 = () => {
     }, [inputval, load]);
     return (
         <div>
-            <select onChange={handleChange}>
+            <select className="custom-select" onChange={handleChange}>
                 <option disabled selected value=" ">Select Total Generators</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -124,6 +127,7 @@ const Helper1 = () => {
             </select>
             {total !== 0 ?
                 <div style={{ 'marginTop': '50px' }}>
+                    <div className="table-container">
                     <Table border='1' width='1000' align='center'>
                         <thead>
                             <tr id="definition">
@@ -169,15 +173,18 @@ const Helper1 = () => {
                             ))}
                         </tbody>
                     </Table>
+                    </div>
+                    <div className="button-container">
                     <span style={{ 'display': 'inline-block' }}>
                         <p style={{ 'marginRight': '50px' }}>Enter the Load required</p>
                     </span>
-                    <input type="text" defaultValue={parseInt(0)} onChange={(e) => { setLoad(e.target.value); }} />
+                    <input className='custom-input' type="text" defaultValue={parseInt(0)} onChange={(e) => { setLoad(e.target.value); }} />
                     <br />
                     {istrue === true ?
 
-                        <button onClick={solver}>Solve for generators to use</button> :
+                        <button className='table-button' onClick={solver}>Solve for generators to use</button> :
                         <>
+                            <div className="table-container">
                             <Table border='1' width='1000' align='center'>
                                 <thead>
                                     <tr id="definition">
@@ -198,6 +205,8 @@ const Helper1 = () => {
                                     ))}
                                 </tbody>
                             </Table>
+                            </div>
+                            
                             {
                                 answer!==Number.MAX_SAFE_INTEGER?
                                 <h1>Overall Cost = {answer}</h1>:
@@ -205,6 +214,7 @@ const Helper1 = () => {
                             }
 
                         </>}
+                        </div>
 
                 </div>
                 : <div>
