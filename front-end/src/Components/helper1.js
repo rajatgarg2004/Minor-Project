@@ -199,7 +199,9 @@ const Helper1 = () => {
         setIstrue(true);
     }, [inputval, load]);
     return (
-        <div>
+        <div >
+
+            {/* <span style={{"backgroundColor":"white"}}> */}
             <select className="custom-select" onChange={handleChange}>
                 <option disabled selected value=" ">Select Total Generators</option>
                 <option value="1">1</option>
@@ -212,6 +214,7 @@ const Helper1 = () => {
                 <option value="8">8</option>
 
             </select>
+            {/* </span> */}
             {total !== 0 ?
                 <div style={{ 'marginTop': '50px' }}>
                     <div className="table-container">
@@ -263,7 +266,7 @@ const Helper1 = () => {
                     </div>
                     <div className="button-container">
                     <span style={{ 'display': 'inline-block' }}>
-                        <p style={{ 'marginRight': '50px' }}>Enter the Load required</p>
+                        <p style={{ 'marginRight': '50px' ,"backgroundColor":"White","padding":"10px","border-radius":"10px"}}>Enter the Load required</p>
                     </span>
                     <input className='custom-input' type="text" defaultValue={parseInt(0)} onChange={(e) => { setLoad(e.target.value); }} />
                     <br />
@@ -297,8 +300,8 @@ const Helper1 = () => {
                                 <>
                                 {
                                     answer !== Number.MAX_SAFE_INTEGER ?
-                                        <h1>Overall Cost = {answer}</h1> :
-                                        <h1>Overall Cost = 0</h1>
+                                        <h1 style={{"backgroundColor":"White"}}>Overall Cost = {answer}</h1> :
+                                        <h1 style={{"backgroundColor":"White"}}>Overall Cost = 0</h1>
                                 }
                                 </>
                             }   
@@ -308,7 +311,7 @@ const Helper1 = () => {
 
                 </div>
                 : <div>
-                    <h1>Please select some value</h1>
+                    <h1 style={{"backgroundColor":"white"}}>Please select some value</h1>
                 </div>}
         </div>
 
