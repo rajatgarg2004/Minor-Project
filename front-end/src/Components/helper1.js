@@ -222,8 +222,8 @@ const Helper1 = () => {
                         <thead>
                             <tr id="definition">
                                 <td>Generator</td>
-                                <td>Minimum Capacity</td>
-                                <td>Maximum Capacity</td>
+                                <td>Minimum Capacity (MW)</td>
+                                <td>Maximum Capacity (MW)</td>
                                 <td>a</td>
                                 <td>b</td>
                                 <td>d</td>

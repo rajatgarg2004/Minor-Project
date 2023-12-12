@@ -57,8 +57,8 @@ const Horizontalchart =() => {
       });
     useEffect(()=> {
        const fetchData= async()=> {
-           const url = 'https://script.google.com/macros/s/AKfycbygurSv50sNgj5xQfUehrbbcTYItHZcH7SH2yzLi6qz9lXtqvn5zRenEid-Eg3OX1pLJQ/exec';
-           const labelSet = []
+          const url = 'https://script.google.com/macros/s/AKfycbygurSv50sNgj5xQfUehrbbcTYItHZcH7SH2yzLi6qz9lXtqvn5zRenEid-Eg3OX1pLJQ/exec';
+          console.log(url);
            const dataSet1 = [];
            const dataSet2 = [];
          await fetch(url).then((data)=> {
@@ -100,13 +100,11 @@ const Horizontalchart =() => {
     },[])
    
     return(
-      // <div style={{"marginLeft":"350px"}}>
         <div style={{"backgroundColor":"White"}}>
         <div style={{width:'87%', height:'50%'}}>
             <Bar data={data} options={options}/>
          </div>
          </div>
-      // </div>
          )
 }
 export default Horizontalchart;

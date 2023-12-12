@@ -58,7 +58,6 @@ const SWG =() => {
     useEffect(()=> {
        const fetchData= async()=> {
            const url = 'https://script.google.com/macros/s/AKfycbzIn-T8v0E9F0Tzeu1tgNB992LhaWskEucxLb01bGiggiZoO--GLFQai3Q9B_jdZ3Dt5g/exec';
-           const labelSet = []
            const dataSet1 = [];
            const dataSet2 = [];
          await fetch(url).then((data)=> {
