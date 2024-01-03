@@ -71,8 +71,9 @@ const SWG = () => {
         const res = data.json();
         return res
       }).then((res) => {
-        console.log("ressss", res)
-        const datanew = res['data'];
+        let datanew = res['data'];
+        datanew = datanew.slice(0,datanew.length-1);
+        console.log(datanew);
         for (const val of datanew) {
           console.log(val);
           dataSet1.push(val.Energy_Required);
