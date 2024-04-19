@@ -1,0 +1,38 @@
+.table-container {
+    margin-top: 20px;
+  }
+  
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-container th, .table-container td {
+    border: 1px solid #ddd;
+    padding: 12px; 
+    text-align: left;
+  }
+  
+  .table-container th {
+    background-color: #f2f2f2; 
+  }
+  
+  .table-container td:nth-child(odd) {
+    background-color: #f2f2f2; 
+  }
+  
+  .table-container td:nth-child(even) {
+    background-color: #fff; 
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .table-container th, .table-container td {
+      font-size: 14px; 
+    }
+}
+  
+  
